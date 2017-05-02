@@ -95,7 +95,7 @@
 <meta property="og:url" content="http://oopsryan.github.io/2017/05/02/syntactic-sugar/index.html">
 <meta property="og:site_name" content="Ryan's Blog">
 <meta property="og:description" content="Syntactic Sugar在阅读计算机语言的英文材料时，经常会看到一个有趣的术语 – Syntactic Sugar. 下面给出维基百科的解释  语法糖（Syntactic sugar），也译为糖衣语法，是由英国计算机科学家彼得·兰丁发明的一个术语，指计算机语言中添加的某种语法，这种语法对语言的功能并没有影响，但是更方便程序员使用。语法糖让程序更加简洁，有更高的可读性。 举例来说，许多程序语言">
-<meta property="og:updated_time" content="2017-05-02T12:13:11.000Z">
+<meta property="og:updated_time" content="2017-05-02T12:17:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Syntactic Sugar(语法糖)">
 <meta name="twitter:description" content="Syntactic Sugar在阅读计算机语言的英文材料时，经常会看到一个有趣的术语 – Syntactic Sugar. 下面给出维基百科的解释  语法糖（Syntactic sugar），也译为糖衣语法，是由英国计算机科学家彼得·兰丁发明的一个术语，指计算机语言中添加的某种语法，这种语法对语言的功能并没有影响，但是更方便程序员使用。语法糖让程序更加简洁，有更高的可读性。 举例来说，许多程序语言">
@@ -433,21 +433,19 @@
 <p>举例来说，许多程序语言提供专门的语法来对数组中的元素进行引用和更新。从理论上来讲，一个数组元素的引用涉及到两个参数：数组和下标向量，比如这样的表达式，get_array(Array, vector(i, j))。然而，许多语言支持这样直接引用 Array[i, j]。同理，数组元素的更新涉及到三个参数，set_array(Array, vector(i, j), value)，但是很多语言提供这样直接赋值，Array[i, j] = value。</p>
 </blockquote>
 <p>再来看一个SML/NJ中的例子，records是一个大多数程序语言没有的复合数据类型。而常见复合数据类型tuples实际上是records的一种特殊形式。</p>
-<pre><code>(*An example of records has a type-checking like
-    {bar:bool, baz:string, foo:int}*)
+<pre><code>(*An example of records has a type-checking like {bar:bool, baz:string, foo:int}*)
 val records_example = {foo = 1, bar = true, baz = &quot;baz&quot;}
 
-(*An example of tuples has a type-checking like
-    int*bool*string*)
+(*An example of tuples has a type-checking like int*bool*string*)
 val tuples_example = (1, true, &quot;baz&quot;)
 </code></pre><p>在上述例子中，可以看到records类型元素的顺序是按照字母顺序排列的，而tuples类型元素的顺序是不变的。</p>
 <p>事实上，这个tuples例子可以写成<code>val tuples_example= {3=1, 1=true, 2=&quot;baz&quot;}</code>, 能够得到输出结果为<code>(true, &quot;baz&quot;, 1)</code>。这样排列顺序就和records一致了。</p>
-<p>这也从侧面表明了Syntactic Sugar的意义。</p>
+<p>这也从侧面表现了Syntactic Sugar的意义。</p>
 <blockquote>
 <p>We say, “tuples are just syntactic sugar for records with fields named 1, 2, …, n.” It is syntactic because we can describe everything about tuples in terms of equivalent record syntax. It is sugar because it makes the language sweeter. The term syntactic sugar is widely used. Syntactic sugar is a great way to keep the key ideas in a programming-language small (making it easier to implement) while giving programmers convenient ways to write things.</p>
 </blockquote>
 <p>这是Dan Grossman在Programming Languages课程材料中的一段原文。</p>
-<p>语法糖之所以为语法糖是因为它有两种形式有相同的语法规则，而“糖”则意为这个现象让程序员们能更方便得使用而觉得语言很甜美。非常巧妙的翻译，同样巧妙的翻译还有比如“married but available” :)</p>
+<p>语法糖之所以为语法糖是因为两种形式的写法有相同的语法规则，“糖”则意为这个现象能够让程序员们更方便地使用语法而觉得语言很甜美。非常巧妙的翻译，同样巧妙的翻译还有比如“married but available” :)</p>
 <p>总结一下，Syntactic Sugar是一种语法现象。它使得程序语言更容易写，更容易实现。</p>
 
       
