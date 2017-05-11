@@ -430,48 +430,15 @@
 
       
         
-          
-            <p>转自StackOverflow：<a href="http://stackoverflow.com/questions/33923/what-is-tail-recursion" title="What is tail-recursion?" target="_blank" rel="external">What is tail-recursion?</a></p>
-<p>尾递归和一般的递归不同在对内存的占用，普通递归创建stack累积而后计算收缩，尾递归只会占用恒量的内存（和迭代一样）。SICP中描述了一个内存占用曲线，用以上答案中的Python代码为例（普通递归）：</p>
-<pre><code>def recsum(x):
-    if x == 1:
-        return x
-    else:
-        return x + recsum(x - 1)
-</code></pre><p>当调用recsum(5)，Python调试器中发生如下状况：</p>
-<pre><code>recsum(5)
-5 + recsum(4)
-5 + (4 + recsum(3))
-5 + (4 + (3 + recsum(2)))
-5 + (4 + (3 + (2 + recsum(1))))
-5 + (4 + (3 + (2 + 1)))
-5 + (4 + (3 + 3))
-5 + (4 + 6)
-5 + 10
-15
-</code></pre><p>这个曲线就代表内存占用大小的峰值，从左到右，达到顶峰，再从右到左收缩。而我们通常不希望这样的事情发生，所以使用迭代，只占据常量stack space(更新这个栈！而非扩展他)。</p>
-<hr>
-<p>（一个替代方案：迭代）</p>
-<pre><code>for i in range(6):
-    sum += i
-</code></pre><p>因为Python，Java，Pascal等等无法在语言中实现尾递归优化(Tail Call Optimization, TCO)，所以采用了for, while, goto等特殊结构代替recursive的表述。Scheme则不需要这样曲折地表达，一旦写成尾递归形式，就可以进行尾递归优化。</p>
-<p>Python中可以写（尾递归）：</p>
-<pre><code>def tailrecsum(x, running_total=0):
-    if x == 0:
-        return running_total
-    else:
-        return tailrecsum(x - 1, running_total + x)
-</code></pre><p>理论上类似上面:</p>
-<pre><code>tailrecsum(5, 0)
-tailrecsum(4, 5)
-tailrecsum(3, 9)
-tailrecsum(2, 12)
-tailrecsum(1, 14)
-tailrecsum(0, 15)
-15
-</code></pre><p>观察到，tailrecsum(x, y)中形式变量y的实际变量值是不断更新的，对比普通递归就很清楚，后者每个recsum()调用中y值不变，仅在层级上加深。所以，<strong>尾递归是把变化的参数传递给递归函数的变量了</strong>。怎么写尾递归？形式上只要最后一个return语句是单纯函数就可以。如：<code>return tailrec(x+1);</code><br>而<code>return tailrec(x+1) + x;</code><br>则不可以。<em>因为无法更新tailrec()函数内的实际变量，只是新建一个栈。但Python不能尾递归优化</em>（Java不行，C可以，我不知道为什么），这里是用它做个例子。</p>
-
-          
+          <p>转自StackOverflow：<a href="http://stackoverflow.com/questions/33923/what-is-tail-recursion" title="What is tail-recursion?">What is tail-recursion?</a></p>
+<p>尾递归和一般的递归不同在对内存的占用，普通递归创建stack累积而后计算收缩，尾递归只会占用恒量的内存（和迭代一样）。SICP中描述了一个内存占用曲线，用以上答案中的Python代码为例（普通递归）：<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/05/11/tail-recursion/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -623,30 +590,14 @@ tailrecsum(0, 15)
 
       
         
-          
-            <h2 id="Syntactic-Sugar"><a href="#Syntactic-Sugar" class="headerlink" title="Syntactic Sugar"></a>Syntactic Sugar</h2><p>在阅读计算机语言相关的英文材料时，经常会看到一个有趣的术语 – Syntactic Sugar.</p>
-<p>下面给出维基百科的解释</p>
-<blockquote>
-<p>语法糖（Syntactic sugar），也译为糖衣语法，是由英国计算机科学家彼得·兰丁发明的一个术语，指计算机语言中添加的某种语法，这种语法对语言的功能并没有影响，但是更方便程序员使用。语法糖让程序更加简洁，有更高的可读性。</p>
-<p>举例来说，许多程序语言提供专门的语法来对数组中的元素进行引用和更新。从理论上来讲，一个数组元素的引用涉及到两个参数：数组和下标向量，比如这样的表达式，get_array(Array, vector(i, j))。然而，许多语言支持这样直接引用 Array[i, j]。同理，数组元素的更新涉及到三个参数，set_array(Array, vector(i, j), value)，但是很多语言提供这样直接赋值，Array[i, j] = value。</p>
-</blockquote>
-<p>再来看一个SML/NJ中的例子，records是一个大多数程序语言没有的复合数据类型。而常见复合数据类型tuples实际上是records的一种特殊形式。</p>
-<pre><code>(*An example of records has a type-checking like {bar:bool, baz:string, foo:int}*)
-val records_example = {foo = 1, bar = true, baz = &quot;baz&quot;}
-
-(*An example of tuples has a type-checking like int*bool*string*)
-val tuples_example = (1, true, &quot;baz&quot;)
-</code></pre><p>在上述例子中，可以看到records类型元素的顺序是按照字母顺序排列的，而tuples类型元素的顺序是不变的。</p>
-<p>事实上，这个tuples例子可以写成<code>val tuples_example= {3=1, 1=true, 2=&quot;baz&quot;}</code>, 能够得到输出结果为<code>(true, &quot;baz&quot;, 1)</code>。这样排列顺序就和records一致了。</p>
-<p>这也从侧面表现了Syntactic Sugar的意义。</p>
-<blockquote>
-<p>We say, “tuples are just syntactic sugar for records with fields named 1, 2, …, n.” It is syntactic because we can describe everything about tuples in terms of equivalent record syntax. It is sugar because it makes the language sweeter. The term syntactic sugar is widely used. Syntactic sugar is a great way to keep the key ideas in a programming-language small (making it easier to implement) while giving programmers convenient ways to write things.</p>
-</blockquote>
-<p>这是Dan Grossman在Programming Languages课程材料中的一段原文。</p>
-<p>语法糖之所以为语法糖是因为两种形式的写法有相同的语法规则，“糖”则意为这个现象能够让程序员们更方便地使用语法而觉得语言很甜美。非常巧妙的翻译，同样巧妙的翻译还有比如“married but available” :)</p>
-<p>总结一下，Syntactic Sugar是一种语法现象。它使得程序语言更容易写，更容易实现。</p>
-
-          
+          <h2 id="Syntactic-Sugar"><a href="#Syntactic-Sugar" class="headerlink" title="Syntactic Sugar"></a>Syntactic Sugar</h2><p>在阅读计算机语言相关的英文材料时，经常会看到一个有趣的术语 – Syntactic Sugar.<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/05/02/syntactic-sugar/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

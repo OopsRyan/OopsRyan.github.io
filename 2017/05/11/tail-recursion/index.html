@@ -88,17 +88,17 @@
 
 
 
-<meta name="description" content="转自StackOverflow：What is tail-recursion? 尾递归和一般的递归不同在对内存的占用，普通递归创建stack累积而后计算收缩，尾递归只会占用恒量的内存（和迭代一样）。SICP中描述了一个内存占用曲线，用以上答案中的Python代码为例（普通递归）： def recsum(x):     if x == 1:         return x     else:">
+<meta name="description" content="转自StackOverflow：What is tail-recursion? 尾递归和一般的递归不同在对内存的占用，普通递归创建stack累积而后计算收缩，尾递归只会占用恒量的内存（和迭代一样）。SICP中描述了一个内存占用曲线，用以上答案中的Python代码为例（普通递归）：">
 <meta name="keywords" content="Algorithm">
 <meta property="og:type" content="article">
 <meta property="og:title" content="尾递归">
 <meta property="og:url" content="http://oopsryan.github.io/2017/05/11/tail-recursion/index.html">
 <meta property="og:site_name" content="Ryan's Blog">
-<meta property="og:description" content="转自StackOverflow：What is tail-recursion? 尾递归和一般的递归不同在对内存的占用，普通递归创建stack累积而后计算收缩，尾递归只会占用恒量的内存（和迭代一样）。SICP中描述了一个内存占用曲线，用以上答案中的Python代码为例（普通递归）： def recsum(x):     if x == 1:         return x     else:">
-<meta property="og:updated_time" content="2017-05-11T13:37:51.000Z">
+<meta property="og:description" content="转自StackOverflow：What is tail-recursion? 尾递归和一般的递归不同在对内存的占用，普通递归创建stack累积而后计算收缩，尾递归只会占用恒量的内存（和迭代一样）。SICP中描述了一个内存占用曲线，用以上答案中的Python代码为例（普通递归）：">
+<meta property="og:updated_time" content="2017-05-11T13:41:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="尾递归">
-<meta name="twitter:description" content="转自StackOverflow：What is tail-recursion? 尾递归和一般的递归不同在对内存的占用，普通递归创建stack累积而后计算收缩，尾递归只会占用恒量的内存（和迭代一样）。SICP中描述了一个内存占用曲线，用以上答案中的Python代码为例（普通递归）： def recsum(x):     if x == 1:         return x     else:">
+<meta name="twitter:description" content="转自StackOverflow：What is tail-recursion? 尾递归和一般的递归不同在对内存的占用，普通递归创建stack累积而后计算收缩，尾递归只会占用恒量的内存（和迭代一样）。SICP中描述了一个内存占用曲线，用以上答案中的Python代码为例（普通递归）：">
 
 
 
@@ -427,7 +427,7 @@
 
       
         <p>转自StackOverflow：<a href="http://stackoverflow.com/questions/33923/what-is-tail-recursion" title="What is tail-recursion?" target="_blank" rel="external">What is tail-recursion?</a></p>
-<p>尾递归和一般的递归不同在对内存的占用，普通递归创建stack累积而后计算收缩，尾递归只会占用恒量的内存（和迭代一样）。SICP中描述了一个内存占用曲线，用以上答案中的Python代码为例（普通递归）：</p>
+<p>尾递归和一般的递归不同在对内存的占用，普通递归创建stack累积而后计算收缩，尾递归只会占用恒量的内存（和迭代一样）。SICP中描述了一个内存占用曲线，用以上答案中的Python代码为例（普通递归）：<br><a id="more"></a></p>
 <pre><code>def recsum(x):
     if x == 1:
         return x
