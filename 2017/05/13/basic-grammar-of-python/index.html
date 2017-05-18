@@ -96,7 +96,7 @@
 <meta property="og:site_name" content="Ryan's Blog">
 <meta property="og:description" content="这段时间把《简明Python教程》学完并整理了Python基本语法的思维导图。思维导图源文件下载">
 <meta property="og:image" content="http://ooysemn2x.bkt.clouddn.com/overview.png">
-<meta property="og:updated_time" content="2017-05-13T09:31:13.000Z">
+<meta property="og:updated_time" content="2017-05-18T01:50:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Basic Grammar of Python">
 <meta name="twitter:description" content="这段时间把《简明Python教程》学完并整理了Python基本语法的思维导图。思维导图源文件下载">
@@ -432,6 +432,54 @@
 <a id="more"></a>
 <hr>
 <p><center><img src="http://ooysemn2x.bkt.clouddn.com/overview.png" alt="Alt text"></center></p>
+<h3 id="一些语法差异"><a href="#一些语法差异" class="headerlink" title="一些语法差异"></a>一些语法差异</h3><h4 id="引号"><a href="#引号" class="headerlink" title="引号"></a>引号</h4><p>Python中不同引号之间互相兼容，不需要转义，但是单引号和三引号不能连在一起，否则会报错</p>
+<pre><code># Right way
+print &apos;&apos;&apos;The sample string was written by &quot;Ryan&quot;&apos;&apos;&apos;
+</code></pre><p>如果要连在一起必须转义</p>
+<pre><code># Don&apos;t do this
+print &apos;&apos;&apos;The sample string was written by &apos;Ryan&apos;&apos;&apos;&apos;
+
+# Do this
+print &apos;&apos;&apos;The sample string was written by &apos;Ryan\&apos;&apos;&apos;&apos;
+</code></pre><p>同引号之间不兼容，因为解释器分不清哪一段才是字符串。<br>另外，注意，双引号是一个符号，而三引号是三个单引号。</p>
+<p>行末的一个反斜杠” \ “表示下一行继续，而不是新的一行</p>
+<pre><code>print &apos;The first part of the line,\
+the second part of the line but not a new line.&apos;
+</code></pre><h4 id="List赋值"><a href="#List赋值" class="headerlink" title="List赋值"></a>List赋值</h4><p>List赋值，应该采用切片操作符 “ : “</p>
+<pre><code>myList = fruit[:]
+</code></pre><p>如果仅仅使用<code>myList = fruit</code>得到的是一个对<code>fruit</code>的引用，两个变量指向同一内存地址。</p>
+<h4 id="控制流"><a href="#控制流" class="headerlink" title="控制流"></a>控制流</h4><p>循环后可加<code>else</code>。总是会在循环结束后被执行一次，除非遇到<code>break</code>。<br>换句话说，循环后的<code>else</code>通常被用在，break后不需要执行，而其他时候下需要执行。</p>
+<h4 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h4><p>与C，Java，C#不同的是，Python处理异常的语句是<code>try...except...finally</code>，而不是<code>try...catch...finally</code></p>
+<p>Python示例：</p>
+<pre><code>import sys
+
+class ShortInputException(Exception):
+    &apos;&apos;&apos;If the length of string is less than the given number,
+    this exception will be raised.&apos;&apos;&apos;
+
+    def __init__(self, length, atLeast):
+        Exception.__init__(self)
+        self.length = length
+        self.atLeast = atLeast
+
+atLeast = 3
+
+try:
+    string = raw_input(&quot;Enter a string here=&gt;&quot;)
+    if len(string) &lt; atLeast:
+        raise ShortInputException(len(string), atLeast)
+except EOFError:
+    print &apos;Why did you do an EOFError on me?&apos;
+except ShortInputException, x:
+    print &apos;The length of string you entered was %d,\
+    but it should be not less than %d&apos; %(x.length, x.atLeast)
+else:
+    print &apos;Other exception occured&apos;
+finally:
+    print &apos;Finally...Done&apos;
+</code></pre><p>上述示例代码中，<strong>try中抛出的自定义异常类对象，在except中捕获必须要带两个参数，异常类对象类型（ShortInputException）和形参（x）</strong>。</p>
+<h4 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h4><p>python中的所有关键字都是小写的，如class、def、import等等。</p>
+<h3 id="额外的一点注意"><a href="#额外的一点注意" class="headerlink" title="额外的一点注意"></a>额外的一点注意</h3><p>shell中，等待用户输入，Ctrl+d是EOF；Ctrl+c是终止程序。</p>
 
       
     </div>
@@ -567,8 +615,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/error.gif"
@@ -671,6 +728,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一些语法差异"><span class="nav-number">1.</span> <span class="nav-text">一些语法差异</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#引号"><span class="nav-number">1.1.</span> <span class="nav-text">引号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#List赋值"><span class="nav-number">1.2.</span> <span class="nav-text">List赋值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#控制流"><span class="nav-number">1.3.</span> <span class="nav-text">控制流</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#异常"><span class="nav-number">1.4.</span> <span class="nav-text">异常</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关键字"><span class="nav-number">1.5.</span> <span class="nav-text">关键字</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#额外的一点注意"><span class="nav-number">2.</span> <span class="nav-text">额外的一点注意</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>
