@@ -96,7 +96,7 @@
 <meta property="og:site_name" content="Ryan's Blog">
 <meta property="og:description" content="这段时间把《简明Python教程》学完并整理了Python基本语法的思维导图。思维导图源文件下载">
 <meta property="og:image" content="http://ooysemn2x.bkt.clouddn.com/overview.png">
-<meta property="og:updated_time" content="2017-05-18T01:50:41.000Z">
+<meta property="og:updated_time" content="2017-05-18T02:02:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Basic Grammar of Python">
 <meta name="twitter:description" content="这段时间把《简明Python教程》学完并整理了Python基本语法的思维导图。思维导图源文件下载">
@@ -442,7 +442,7 @@ print &apos;&apos;&apos;The sample string was written by &apos;Ryan&apos;&apos;&
 # Do this
 print &apos;&apos;&apos;The sample string was written by &apos;Ryan\&apos;&apos;&apos;&apos;
 </code></pre><p>同引号之间不兼容，因为解释器分不清哪一段才是字符串。<br>另外，注意，双引号是一个符号，而三引号是三个单引号。</p>
-<p>行末的一个反斜杠” \ “表示下一行继续，而不是新的一行</p>
+<p><em>单引号或双引号的行末的一个反斜杠” \ “表示下一行继续，而不是新的一行，否则会报错，解释器会认为上下两行没有联系，而无法解释下一行的内容。使用三引号可以避免这种情况，因此通常单行内容比较长需要换行时可以用三引号</em>。</p>
 <pre><code>print &apos;The first part of the line,\
 the second part of the line but not a new line.&apos;
 </code></pre><h4 id="List赋值"><a href="#List赋值" class="headerlink" title="List赋值"></a>List赋值</h4><p>List赋值，应该采用切片操作符 “ : “</p>
