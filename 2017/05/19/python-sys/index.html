@@ -95,7 +95,7 @@
 <meta property="og:url" content="http://oopsryan.github.io/2017/05/19/python-sys/index.html">
 <meta property="og:site_name" content="Ryan's Blog">
 <meta property="og:description" content="由Python标准库sys得到的一些启发，关于shell中带参数命令的实现。很多人在shell中调用过多种命令，却未从深层次理解其背后的实现思路。">
-<meta property="og:updated_time" content="2017-05-19T02:08:21.000Z">
+<meta property="og:updated_time" content="2017-05-19T02:11:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Shell中带参数命令的实现">
 <meta name="twitter:description" content="由Python标准库sys得到的一些启发，关于shell中带参数命令的实现。很多人在shell中调用过多种命令，却未从深层次理解其背后的实现思路。">
@@ -426,8 +426,10 @@
       
 
       
-        <p>由Python标准库<code>sys</code>得到的一些启发，关于shell中带参数命令的实现。<br>很多人在shell中调用过多种命令，却未从深层次理解其背后的实现思路。<br><a id="more"></a><br>    import sys</p>
-<pre><code>def readfile(filename):
+        <p>由Python标准库<code>sys</code>得到的一些启发，关于shell中带参数命令的实现。<br>很多人在shell中调用过多种命令，却未从深层次理解其背后的实现思路。<br><a id="more"></a></p>
+<pre><code>import sys
+
+def readfile(filename):
     &apos;&apos;&apos;read the file according to the filename&apos;&apos;&apos;
 
     f = file(filename)
@@ -458,8 +460,8 @@ Options include:
         print &apos;Unknown option&apos;
 else :
     # sys.argv[1:] means all of sys.argv except
-    # the first one, the program itself.
-    # So it can print all these files one by one.
+    # the first one, the program itself,
+    # so it can print all these files one by one.
     for filename in sys.argv[1:]:
         readfile(filename)
 </code></pre><p>运行结果：</p>
