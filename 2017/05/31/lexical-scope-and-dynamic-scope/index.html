@@ -88,17 +88,17 @@
 
 
 
-<meta name="description" content="###词法域和动态域（Lexical scope and dynamic scope） 首先引入几个概念：  bindings: 一个argument到一个value的映射。  val x = 1 x maps to 1  environment：参数环境。environment是一组bindings。  一个函数体是在该函数被定义的环境中被计算的，而不是被调用的环境中被计算。一个例子表现了两者的">
+<meta name="description" content="词法域和动态域（Lexical scope and dynamic scope）首先引入几个概念：  bindings: 一个argument到一个value的映射。  val x = 1 x maps to 1  environment：参数环境。environment是一组bindings。">
 <meta name="keywords" content="Python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="lexical scope and dynamic scope">
 <meta property="og:url" content="http://oopsryan.github.io/2017/05/31/lexical-scope-and-dynamic-scope/index.html">
 <meta property="og:site_name" content="Ryan's Blog">
-<meta property="og:description" content="###词法域和动态域（Lexical scope and dynamic scope） 首先引入几个概念：  bindings: 一个argument到一个value的映射。  val x = 1 x maps to 1  environment：参数环境。environment是一组bindings。  一个函数体是在该函数被定义的环境中被计算的，而不是被调用的环境中被计算。一个例子表现了两者的">
-<meta property="og:updated_time" content="2017-05-31T03:29:56.000Z">
+<meta property="og:description" content="词法域和动态域（Lexical scope and dynamic scope）首先引入几个概念：  bindings: 一个argument到一个value的映射。  val x = 1 x maps to 1  environment：参数环境。environment是一组bindings。">
+<meta property="og:updated_time" content="2017-05-31T03:31:21.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="lexical scope and dynamic scope">
-<meta name="twitter:description" content="###词法域和动态域（Lexical scope and dynamic scope） 首先引入几个概念：  bindings: 一个argument到一个value的映射。  val x = 1 x maps to 1  environment：参数环境。environment是一组bindings。  一个函数体是在该函数被定义的环境中被计算的，而不是被调用的环境中被计算。一个例子表现了两者的">
+<meta name="twitter:description" content="词法域和动态域（Lexical scope and dynamic scope）首先引入几个概念：  bindings: 一个argument到一个value的映射。  val x = 1 x maps to 1  environment：参数环境。environment是一组bindings。">
 
 
 
@@ -426,21 +426,18 @@
       
 
       
-        <p>###词法域和动态域（Lexical scope and dynamic scope）</p>
-<p>首先引入几个概念：</p>
+        <h3 id="词法域和动态域（Lexical-scope-and-dynamic-scope）"><a href="#词法域和动态域（Lexical-scope-and-dynamic-scope）" class="headerlink" title="词法域和动态域（Lexical scope and dynamic scope）"></a>词法域和动态域（Lexical scope and dynamic scope）</h3><p>首先引入几个概念：</p>
 <ol>
 <li><p>bindings: 一个argument到一个value的映射。</p>
 <p> val x = 1<br> x maps to 1</p>
 </li>
-<li>environment：参数环境。environment是一组bindings。</li>
-</ol>
+<li><p>environment：参数环境。environment是一组bindings。</p>
+<a id="more"></a>
 <p><strong>一个函数体是在该函数被定义的环境中被计算的，而不是被调用的环境中被计算</strong>。一个例子表现了两者的不同：</p>
-<pre><code>val x = 1
-fun f y = x + y
-val x = 2
-val y = 3
-val z = f (x + y)
-</code></pre><p>在这个例子中，f和一个有参数y的函数绑定在一起。它的函数体在函数被定义的environment中查找x。因此这个函数总是能够将它的参数y增加1，因为在这个environment中有一个定义将x映射给1。然后，开始了一个new environment。这个new environment中，f依然映射到之前的函数，x映射到2，y映射到3，然后调用f。</p>
+<p> val x = 1<br> fun f y = x + y<br> val x = 2<br> val y = 3<br> val z = f (x + y)</p>
+</li>
+</ol>
+<p>在这个例子中，f和一个有参数y的函数绑定在一起。它的函数体在函数被定义的environment中查找x。因此这个函数总是能够将它的参数y增加1，因为在这个environment中有一个定义将x映射给1。然后，开始了一个new environment。这个new environment中，f依然映射到之前的函数，x映射到2，y映射到3，然后调用f。</p>
 <p>计算过程如下：</p>
 <ol>
 <li>查找f以得到之前被描述的定义</li>
@@ -586,8 +583,17 @@ val z = f (x + y)
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/error.gif"
@@ -690,6 +696,22 @@ val z = f (x + y)
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#词法域和动态域（Lexical-scope-and-dynamic-scope）"><span class="nav-number">1.</span> <span class="nav-text">词法域和动态域（Lexical scope and dynamic scope）</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>
