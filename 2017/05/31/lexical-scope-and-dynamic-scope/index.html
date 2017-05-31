@@ -95,7 +95,7 @@
 <meta property="og:url" content="http://oopsryan.github.io/2017/05/31/lexical-scope-and-dynamic-scope/index.html">
 <meta property="og:site_name" content="Ryan's Blog">
 <meta property="og:description" content="词法域和动态域（Lexical scope and dynamic scope）首先引入几个概念：  bindings: 一个argument到一个value的映射。  val x = 1 x maps to 1  environment：参数环境。environment是一组bindings。">
-<meta property="og:updated_time" content="2017-05-31T03:31:21.000Z">
+<meta property="og:updated_time" content="2017-05-31T03:32:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="lexical scope and dynamic scope">
 <meta name="twitter:description" content="词法域和动态域（Lexical scope and dynamic scope）首先引入几个概念：  bindings: 一个argument到一个value的映射。  val x = 1 x maps to 1  environment：参数环境。environment是一组bindings。">
@@ -446,7 +446,7 @@
 </ol>
 <p><strong>注意，参数是在current environment被计算的，而函数体是在旧环境中被计算的</strong>。</p>
 <p>这个含义被称为词法域（或静态域）。动态域中，上述结果为7。</p>
-<p><em>*动态域中，整个程序运行时只有一个environment。并在每次函数求值时，都会在这个唯一的environment中查找或更新</em>。</p>
+<p><strong>动态域中，整个程序运行时只有一个environment。并在每次函数求值时，都会在这个唯一的environment中查找或更新</strong>。</p>
 <p><strong>而词法域在每次函数求值的时候都会创建一个新的environment，包含了函数定义时候所能访问的各种bindings。这个函数连同新的environment一起，俗称为closure（闭包）</strong>。</p>
 
       
